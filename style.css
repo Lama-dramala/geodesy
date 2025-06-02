@@ -1,3 +1,160 @@
+/* basic reset  */
+body{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
+ul{
+    padding: 0;
+    margin: unset;
+}
+ul li{
+    display: block;
+}
+button{
+    background-color: unset;
+    border: unset;
+    cursor: pointer;    
+    padding: unset;
+    font-family: unset;
+}
+h1, h2, h3, h4, h5, h6{
+    margin: unset;
+}
+
+/* font */
+.open-sans {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+}
+
+
+html{
+    background: #2A7B9B;
+    background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    padding: 20px;
+}
+body{
+    padding: 30px;
+    font-family: "Open Sans";
+    background-color: #fff;
+    border-radius: 10px;
+}
+.container{
+    max-width: 1500px;
+}
+.hidden{
+    display: none;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+}
+.header_logo{
+    width: 60px;
+    height: 80px;
+    margin-right: 30px;
+}
+.description-container{
+    background-color: rgb(236, 236, 236);
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+.description{
+    width: 1200px;
+    margin: 0 auto;
+}
+
 #map{
+    width: 1200px;
     height: 500px;
+    margin: 0 auto 30px;
+}
+
+.parks-container{
+    padding: 15px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+}
+.park-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.route-link{
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: white;
+    background-color: #007aff;
+}
+.route-link:hover{
+    background-color: #0356ad;
+    transition: 0.5s;
+}
+.park-block{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* Styles for slider */
+.slider-container{
+    overflow: hidden;
+}
+.swiper {
+    width: 900px;
+    height: 600px;
+    overflow: visible;
+}
+.swiper-slide{
+    display: flex;
+    justify-content: center;
+}
+.swiper-slide img{
+    width: 100%;
+}
+.swiper-button-prev{
+    left: -40px;
+}
+.swiper-button-next{
+    right: -40px;
+}
+.swiper-pagination-bullet{
+    height: 11px;
+    width: 11px;
+    margin: 10px 0 !important;
+    background-color: #fff;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active{
+    background-color: #007aff;
+}
+
+/* Styles for reset map button */
+.marker-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 10px;
+  font-weight: 700;
+  background-color: #fff;
+}
+.back-to-home {
+  cursor: pointer;
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 65%);
+}
+.leaflet-touch .back-to-home {
+  width: 34px;
+  height: 34px;
 }

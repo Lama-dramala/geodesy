@@ -3,20 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin="">
-    </script>
+    <title>Ірпінь | Місця відпочинку</title>
+    <link rel="icon" href="img/site-logo.png">
+    <!--  Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- swiper slider styles-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- styles -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
 <body>
+    <header class="header">
+        <img src="img/site-logo.png" alt="site-logo" class="header_logo">
+        <h1 class="heder_title">Місця відпочинку міста Ірпінь</h1>
+    </header>
+    <div class="description-container">
+        <div class="description">
+            <p>Своєю появою м.Ірпінь зобов’язане будівництву залізничної дороги Київ-Ковель, яке розпочалося у 1899 році. Навколо дороги, неподалік Києва, працівники залізниці засновують дачні селища Ірпінь, Буча та Ворзель. Селища Ірпінь та Буча отримали свої назви від одноіменних річок, біля яких вони розташувалися.</p>
+            <p>
+                Фактично, якусь значимість місто набуло після будівництва дороги Київ-Ірпінь, т.к. через дешеву нерухомість та близьке розташування до Києва (10-15 хвилин на машині) люди масово ринули в місто, почала розвиватися його інфраструктура, будуватися нові будинки, парки, місця розваг тощо. <br>
+                Тоді ж у місто переїхала моя сім'я. З того моменту населення міста зросло в півтора рази. У ньому з'явилося кілька центрів, сформованих навколо кварталів із забудовою, та було благоустроєно безліч парків, які стали перлиною міста.
+            </p>
+            <p>
+                У результаті повномасштабного вторгнення на територію України Ірпінь був значно покалічений бойовими діями та регулярними обстрілами. За даними мера міста, понад 3000 тисяч будинків було пошкоджено, з них половина не підлягала відновленню. Відверто кажучи, цими сухими цифрами досить складно передати особисту людську трагедію, яка сталася з десятками тисяч людей, які населяли це місто. Чим довше йде війна, тим сильніше замилюється око і ми все слабше розуміємо що означає та чи інша цифра, тим паче що це в будь-якому випадку буде меркнути на фоні інших звірств і трагедій, всеж Ірпінь межує з Бучею. Та я й не маю жодних точних цифр. Скільки жителів Ірпеня загинули внаслідок російської агресії? Скільки залишились без дому? Скільки вже ніколи не зможуть повернутись до звичного життя? Я не знаю. Все що я знаю це те дивне почуття коли ти ходиш по руїнах свого міста і куди не подивишся, погляд завжди натикатиметься на пошкоджені або згорілі до тла будинку. І хоч я не знаю як саме висловити це почуття, я думаю ви не гірше за мене його знаєте <br>
+                З більш-менш позитивного можна виділити, що через три роки значна частина пошкоджень була так чи інакше відновлена. Пошкоджений або згорілий будинок це вже досить рідкісне видовище, яке зазвичай трапляється на очі, тільки якщо пройти вглиб міста. І зараз гуляючи містом цілком можна забути про те, що тут колись відбувались бойові дії
+            </p>
+        </div>
+    </div>
     <div id="map"></div>
-
+    <div class="parks-container">
+        <div data-name="Парк Незнайка" class="park-block">
+            <div class="park-head">
+                <h2>Парк Незнайка</h2>
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.518456,30.232532&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+                Відкритий 6 жовтня 2018 року під час святкування Дня міста, площа — 6 гектарів. <br>
+                Фактично, з ініціативи тодішнього міського голови В.Карплюка, парк став новим об'єктом інфраструктури в результаті реконструкції одного з найстаріших парків міста — парку «Перемоги». Парк розташований в низині; поміж дерев прокладено доріжки, велодоріжки, встановлено лавки з ліхтарями, насаджено декоративні дерева, кущі та квіти. Має спортивний та дитячий майданчики, альтанки, різноманітні скульптури, сцену та ставок із фонтаном. <br>
+                Названий на честь Миколи Носова — саме в Ірпені він творив дитячі казки про Незнайка; вважається, що Ірпінь і є тим праобразом Квіткового міста Носова. Парк відкрили до 110-річчя від дня народження письменника.
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Neznayka-1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Neznayka-2.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Neznayka-3.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Neznayka-4.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Neznayka-5.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Сквер «Центральний»" class="park-block hidden">            
+            <div class="park-head">
+                <h2>Сквер «Центральний»</h2>
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.508210,30.231003&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+               Центральний парк - один із найбільших парків міста, площа якого становить понад 6 га. Раніше на території парку розташовувався сосновий ліс, на базі якого і зробили парк. <br>
+               Доріжки в парку поділені на пішохідні та велосипедні, що дозволяє більш спортивним громадянам не боятися врізатися в когось, а менш спортивним – не побоюватися того, що хтось вріжеться в них і спокійно насолоджуватися прогулянкою. <br>
+               На території парку знаходиться чудовий дитячий майданчик з купою гірок, гойдалок, каруселів та інших атрибутів дитинства <br>
+               Також В парку росте газонна трава, декоративні дерева, кущі та квіти, встановлено лавки та ліхтарі, є бронзові, кам'яні та дерев'яні скульптури, штучне озеро з фонтаном, в спеціальних місцях встановлені ковані барбекю в формі оленів
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-9.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-7.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-6.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-5.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central-8.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Парк 3аріфи Алієвої" class="park-block hidden">                       
+            <div class="park-head">
+                <h2>Парк 3аріфи Алієвої</h2> 
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.524603,30.238409&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+               Парк Дружби імені академіка Заріфи Алієвої був відкритий у 2011 році за ініціативою державної нафтової компанії Азербайджанської Республіки «SOCAR». До цього в 2004 році, на місці майбутнього парку, коштом азербайджанської громади було встановлено пам'ятник Алієвій <br> 
+               Заріфа Азіз кизи Алієва (28 квітня 1923 – 15 квітня 1985) – азербайджанська лікарка, авторка нових методів лікування очних захворювань й низки наукових робіт, а також дружина третього Президента Азербайджана Гейдара Алієва. <br>
+               Парк створений для ознайомлення відвідувачів з культурою та відомими людьми Азейбарджану. Має багато зелених насаджень, декоративні дерева, кущі, квіти, лавки для відпочинку та дитячий майданчик
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Zarify-Aliyevoyi-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Zarify-Aliyevoyi-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Zarify-Aliyevoyi-3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Zarify-Aliyevoyi-4.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Парк ім. Правика" class="park-block hidden">                                   
+            <div class="park-head">
+                <h2>Парк ім. Правика</h2>
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.526161,30.238150&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+                Ірпінський міський парк ім. В. Правика був створений ще в 1980-х роках, але зазнав повної реконструкції і відкрився заново 19 грудня 2014 року. Парк та пам’ятник присвячені герою-ліквідатору аварії на ЧАЕС, Володимиру Правику, який на той час був начальником караулу пожежної частини <br>
+                Головний вхід прикрашають колони з годинником, за якими простягається центральна алея з квітковими клумбами, декоративними деревами, лавками, ліхтарями та силуетами людей, які підсвічуються вечорами, надаючи парку особливої атмосфери. <br> 
+                Крім цього, тут є велодоріжки, дитячі майданчики. А на центральній сцені часто проводяться розважальні та спортивні заходи для відвідувачів.
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-5.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-6.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Pravik-7.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Дубки" class="park-block hidden">                                            
+            <div class="park-head">
+                <h2>Дубки</h2>  
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.529603524915636,30.233554583419078&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+               Парк засновано на початку 70-х років XX століття, однак тривалий час перебував у занедбаному стані. У квітні 2015 року відбулося відкриття реконструйованого парку, на базі старого. <br>
+               На території парку росте багато дерев, поміж яких проходять вимощені доріжки, велодоріжки та лавки з ліхтарями, ростуть декоративні дерева, кущі, квіти. Облаштовано зону для вигулу й тренування собак та зону для дозвілля: зі столиками, мангалами, альтанками. Поруч із головним входом розміщена літературна кав'ярня.
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-5.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Dybki-6.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Центральна площа Ірпінь" class="park-block hidden">                                                        
+            <div class="park-head">
+                <h2>Центральна площа Ірпінь</h2> 
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.519831,30.244599&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+                Сучасна центральна площа Ірпеня – особлива гордість міста. Повністю реконструйована влітку 2016 року разом із вулицею Шевченка. Тоді ж тут з’явилися архітектурні композиції з колонами і витонченими венеціанськими ліхтарями. <br> 
+                Родзинкою є фонтани, що у спекотні дні приваблюють юрби дітей і дорослих, а увечері підсвічені кольоровими ліхтарями струмені води дарують святковий настрій. <br>
+                24 серпня 2017 року на площі відкрили унікальний пам’ятник Тарасові Шевченку. На відміну від звичайних зображень, він зображений молодим художником та тлі символічної палітри з героями своїх літературних творів <br>
+                Пам’ятник розташовується навпроти Ірпінської міської ради, перед якою ще стоять бронзові бюсти, присвячені видатним діячам України <br>
+                Також поряд із площею знаходиться пам'ятник невідомому солдатові. Меморіал оточений невеликим парком з доріжками та лавками
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-9.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-5.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Central_Square-7.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Парк при Державному податковому університеті" class="park-block hidden">            
+            <div class="park-head">
+                <h2>Парк при Державному податковому університеті</h2>
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.521422,30.226009&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+                Фактично це більше ліс ніж парк, бо все що знаходиться далі ніж за десять метрів від університету ніяк не облаштовано і не облагороджене. Втім, це все ще непогане місце для прогулянок. А прохід на територію університету вільний, тож загалом можна просто гуляти там. Також на території університету знаходиться Храм Святителя Миколая<br>
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/University-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/University-2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/University-5.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/University-4.webp" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div data-name="Парк мами" class="park-block hidden">            
+            <div class="park-head">
+                <h2>Парк мами</h2>
+                <a class="route-link" href="https://www.google.com/maps/dir/?api=1&destination=50.519013,30.210398&travelmode=car" target="_blank">Побудувати маршрут</a>
+            </div>
+            <p>
+                Парк було відкрито у серпні 2021 року. Це невеликий шматочок зеленої зони, оточений новобудовами. У парку досить красива брукована доріжка та дитячий майданчик. Через невеликий розмір і оточеність новобудовами в парку майже завжди досить людно, особливо у вихідний день
+            </p>
+            <div class="slider-container">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Mama-1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Mama-2.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Mama-3.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/slider-img/Mama-4.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- swiper-slider js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
